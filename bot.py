@@ -4,7 +4,7 @@ from discord.ext import commands
 intents = discord.Intents.default()
 intents.members = True
 
-bot = commands.Bot(command_prefix='cd', intents = intents)
+bot = commands.Bot(command_prefix='cd ', intents = intents)
 
 @bot.event
 async def on_ready():
@@ -21,5 +21,9 @@ async def on_member_remove(member):
     print(f'>>{member} leave<<')
     channel = bot.get_channel(880437860761759784)
     await channel.send(f'>>{member} leave<<')
+
+@bot.command()
+async def ping(ctx):
+    await ctx.send(f'{round(bot.latency*1000)} (ms)')
 
 bot.run("Token")
