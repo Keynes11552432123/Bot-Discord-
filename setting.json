@@ -1,5 +1,8 @@
 {
     "TOKEN":"Token",
-    "Welcome_channel":"Channel_ID",
-    "Leave_channel":"Channel_ID"
+    "Welcome_channel":"ChannelID",
+    "Leave_channel":"ChannelID",
+
+    "pic":["D:\\code\\.vscode\\pic\\NewLogo.png","D:\\code\\.vscode\\pic\\LOGO自製(已裁剪).png"],
+    "url_pic":["https://upload.wikimedia.org/wikipedia/zh/thumb/2/27/Tonikaku_Kawaii_volume_1_cover.jpg/220px-Tonikaku_Kawaii_volume_1_cover.jpg","https://japandiary.tw/wp-content/uploads/20201003161910_71.png"]
 }
