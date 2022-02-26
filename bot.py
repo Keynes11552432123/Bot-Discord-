@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 import json
 import random
+import os
 
 with open ('setting.json',mode='r',encoding='utf8') as jfile:
     jdata = json.load(jfile)
@@ -10,7 +11,7 @@ with open ('setting.json',mode='r',encoding='utf8') as jfile:
 intents = discord.Intents.default()
 intents.members = True
 
-bot = commands.Bot(command_prefix='cd ', intents = intents)
+bot = commands.Bot(command_prefix='/cd ', intents = intents)
 
 @bot.event
 async def on_ready():
@@ -29,18 +30,23 @@ async def on_member_remove(member):
     await channel.send(f'>>{member} leave<<')
 
 @bot.command()
-async def ping(ctx):
-    await ctx.send(f'{round(bot.latency*1000)} (ms)')
+async def load(ctx, extension):
+    bot.load_extension(f'cmds.{extension}')
+    await ctx.send(f'>>Loaded {extension} done<<')
 
 @bot.command()
-async def 傳送貓妖頻道圖片(ctx):
-    random_pic = random.choice(jdata['pic'])
-    pic = discord.File(random_pic)
-    await ctx.send(file = pic)
+async def unload(ctx, extension):
+    bot.unload_extension(f'cmds.{extension}')
+    await ctx.send(f'>>Un-Loaded {extension} done<<')
 
 @bot.command()
-async def 傳送總之就是很可愛圖片(ctx):
-    random_pic = random.choice(jdata['url_pic'])
-    await ctx.send(random_pic)
+async def reload(ctx, extension):
+    bot.reload_extension(f'cmds.{extension}')
+    await ctx.send(f'>>Re-Loaded {extension} done<<')
 
-bot.run(jdata['TOKEN'])
+for Filename in os.listdir('./cmds'):
+    if Filename.endswith('.py'):
+        bot.load_extension(f'cmds.{Filename[:-3]}')
+
+if __name__ == "__main__":
+    bot.run(jdata['TOKEN'])
