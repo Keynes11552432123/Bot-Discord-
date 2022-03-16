@@ -35,12 +35,12 @@ class Task(Cog_Extension):
 
         self.bg_task = self.bot.loop.create_task(time_task())
 
-    @commands.command()
+    @commands.command(aliases=['sc'])
     async def set_channel(self, ctx, ch : int):
         self.channel = self.bot.get_channel(ch)
         await ctx.send(f'>>Set Channel: {self.channel.mention}<<')
 
-    @commands.command()
+    @commands.command(aliases=['st'])
     async def set_time(self, ctx, time):
         self.counter = 0
         with open ('setting.json', 'r', encoding='utf8') as jfile:

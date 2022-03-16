@@ -19,7 +19,7 @@ class Main(Cog_Extension):
     async def hi(self, ctx):
         await ctx.send('1234567890')
 
-    @commands.command()
+    @commands.command(aliases=['eb'])
     async def embed(self, ctx):
         embed=discord.Embed(title="貓妖", url="https://catyoukaisho.soci.vip", description="貓妖的介紹", color=0x322e76, timestamp= datetime.datetime.now(tz=datetime.timezone(datetime.timedelta(hours=8))))
         embed.set_author(name="Cat_Youkai_Sho", url="https://catyoukaisho.soci.vip", icon_url="https://cdn.psee.pw/2dd6b920-15b9-4d0f-84ee-399d411224eb.png")
@@ -31,13 +31,13 @@ class Main(Cog_Extension):
         embed.set_footer(text="Ya!")
         await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(aliases=['rs'])
     async def resay(self, ctx, *, msg):
         await ctx.message.delete()
         await ctx.send(msg)
 
-    @commands.command()
-    async def clean(self, ctx, num : int):
+    @commands.command(aliases=['clear', 'c'])
+    async def clean(self, ctx, num=11):
         await ctx.channel.purge(limit=num+1)
 
     @commands.command()
@@ -55,19 +55,19 @@ class Main(Cog_Extension):
             for name in random_online_squad:
                 random_online.remove(name)
 
-    @commands.group()
+    @commands.group(aliases=['ct'])
     async def codetest(self, ctx):
         pass
 
-    @codetest.command()
+    @codetest.command(aliases=['py'])
     async def python(self, ctx):
         await ctx.send("Python")
 
-    @codetest.command()
+    @codetest.command(aliases=['js'])
     async def javascript(self, ctx):
         await ctx.send("JavaScript")
 
-    @codetest.command()
+    @codetest.command(aliases=['c++'])
     async def cpp(self, ctx):
         await ctx.send("C++")
 
@@ -76,7 +76,7 @@ class Main(Cog_Extension):
         if isinstance(error, commands.errors.MissingRequiredArgument):
             await ctx.send("請輸入需要清理的訊息數(條)")
 
-    @commands.command()
+    @commands.command(aliases=['p'])
     async def ping(self, ctx):
         await ctx.send(F'{round(self.bot.latency*1000)} (ms)')
 

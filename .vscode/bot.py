@@ -22,17 +22,17 @@ async def on_ready():
     print('Logged in as ---->', bot.user)
     print('ID:', bot.user.id)
 
-@bot.command()
+@bot.command(aliases=['l'])
 async def load(ctx, extension):
     bot.load_extension(f'cmds.{extension}')
     await ctx.send(f'>>Loaded {extension} done<<')
 
-@bot.command()
+@bot.command(aliases=['ul'])
 async def unload(ctx, extension):
     bot.unload_extension(f'cmds.{extension}')
     await ctx.send(f'>>Un-Loaded {extension} done<<')
 
-@bot.command()
+@bot.command(aliases=['rl'])
 async def reload(ctx, extension):
     bot.reload_extension(f'cmds.{extension}')
     await ctx.send(f'>>Re-Loaded {extension} done<<')
